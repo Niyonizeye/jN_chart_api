@@ -1,0 +1,23 @@
+{
+    "development": {
+      "username": "jeanpaul",
+      "password": "secure@password",
+      "database": "chartwithmedb",
+      "host": "127.0.0.1",
+      "dialect": "postgres"
+    },
+    "test": {
+        "username": "jeanpaul",
+        "password": "secure@password",
+        "database": "chartwithmedb",
+        "host": "127.0.0.1",
+        "dialect": "postgres"
+    },
+    "production": {
+        "username": "jeanpaul",
+        "password": "secure@password",
+        "database": "chartwithmedb",
+        "host": "127.0.0.1",
+        "dialect": "postgres"
+    }
+  }
