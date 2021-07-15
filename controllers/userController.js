@@ -1,32 +1,34 @@
 import models from '../models/index';
 
-import { Op } from 'sequelize';
+import { config } from 'dotenv';
 
-import Token from '../helper/token';
-  
-  exports.getAllUsers =async (req, res, next) => {
+import BcryptService from '../helper/hashpassword';
 
-    try {
-      const user = await models.User.findAll();
-      res.status(200).json( {'message':'user Fetched Well',user });
-    } catch (err) {
-      next(err);
-    }
-  
-  }
+import userToken from '../helper/token';
+
+config();
 
   exports.signup = async (req, res, next) => {
     try{
-      const { firstName, lastName,email,password } = req.body;
+      const { firstName, lastName,email } = req.body;
+
+      const hashedPassword =  BcryptService.hashPassword(req.body.password);
+
       const user = await models.User.create({
         firstName: firstName,
         lastName: lastName,
         email: email,
+        password: hashedPassword,
         createdAt: new Date(),
         updatedAt: new Date()
       })
 
-      res.status(201).json({'message':'user craeted  Well',user});
+      console.log(user.id);
+
+      const token = userToken.generateToken(user.id,user.email);
+
+
+      res.status(201).json({'message':'user created  Well',token: token,user:user });
     }
     catch (err) {
         console.log(err)
@@ -35,27 +37,57 @@ import Token from '../helper/token';
   }
 
   exports.login = async(req, res, next) => {
+    const { email, password } = req.body;
+        
+    const  user = await models.User.findOne( { where: {email:email} });
       
-    try{
-          const { email, password } = req.body;
-          const  user = await models.User.findOne({ where: { [Op.and]: [{ email:email},{ password: password }]}});
-          if(!user){
-              res.status(404).json({
-                  Message: 'Email or password is incorrect'
-              })
-          }
-          else{
-            // const token = Token.generateAuthToken(user.id, user.email);
-            
-              return res.status(200).json({
-                  // token: token,
-                  Message: 'User signed in successfully'
-              });
-          }
-  
+    try{  
+     
+
+        if (user){
+
+          const newpassword = BcryptService.comparePassword(password,user.password);
+
+          if(!newpassword){
+
+            return res.status(401).json({
+              message:"Wrong password"
+            })
+
+          };
+          const token = userToken.generateToken(user.id,user.email);
+          return res.status(200).json({messahge:'Logged in successfully!',
+            token,
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            createdAt: user.createdAt,
+            updatedAt: user.updatedAt,
+          });
+        }
+        else{
+
+          return res.status(401).json({
+            message:"Sorry we can't offer You! with this email"
+          })
+          
+        }
+          
+      
       }catch(err){
           console.log(err);
       }
+  
+  }
+
+  exports.getAllUsers =async (req, res, next) => {
+
+    try {
+      const user = await models.User.findAll();
+      res.status(200).json( {'message':'user Fetched Well',user });
+    } catch (err) {
+      next(err);
+    }
   
   }
  

@@ -7,7 +7,7 @@
   "scripts": {
     "start": "nodemon --exec babel-node index.js",
     "migrate": "npx sequelize-cli db:migrate",
-    "undo migrate": "npx sequelize-cli db:migrate:undo",
+    "undomigrate": "npx sequelize-cli db:migrate:undo",
     "seeduser": "npx sequelize-cli seed:generate --name demo-user",
     "insertuserdata": "npx sequelize-cli db:seed:all",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -17,6 +17,7 @@
   "dependencies": {
     "@babel/cli": "^7.14.3",
     "@babel/preset-env": "^7.14.7",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",

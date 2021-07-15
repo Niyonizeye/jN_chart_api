@@ -1,20 +1,31 @@
 import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv';
 
-dotenv.config();
-const userInfo = {
 
-  generateAuthToken(id, email) {
-    const token = jwt.sign({
-      Id: id,
-      userEmail: email,
-    }, process.env.Token_Key, { expiresIn: '1d' });
-    return token;
-  },
-  verifyToken(token) {
-    const mytoken = jwt.verify(token, process.env.Token_Key);
-    return mytoken.Id;
-  },
-};
+class TokenUtil {
+	/**
+	 * @param {integer} id
+	 * @param {string} email
+	 * @returns {string} function to generate a token string
+	 */
+	static generateToken(id,email) {
+		const token = jwt.sign({
+			Id: id,
+			Email:email,
+		  }, process.env.SECRET, { expiresIn: '1d' });
+		  return token;
+	}
+	/**
+	 * Method to return userid from token
+	 * @param {String} token 
+	 * @returns {integer} function to return id from a token string
+	 */
 
-export default userInfo;
+	static userIdFromToken (token)  {
+		const mytoken = jwt.verify(token, process.env.SECRET);
+	  
+		return mytoken.Id;
+	  };
+
+}
+
+export default TokenUtil;
