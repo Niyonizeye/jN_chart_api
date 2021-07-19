@@ -1,15 +1,30 @@
 import express from 'express';
 
-import userController from '../controllers/userController';
 
-import checkUserExists from "../middleware/checkexistuser"
+// import loginController from '../controllers/authController/login';
+
+import signupController from '../controllers/authController/signup';
+
+import checkUserExists from '../middleware/checkexistuser';
+
+import userSignupValidationInput from '../middleware/signupvalidation';
+
+import userController from '../controllers/userController'
 
 const router = express.Router();
 
+// auth routes
+
+router.post('/signup',userSignupValidationInput ,checkUserExists,signupController.signup);
+
+// router.post('/login', loginController.login);
+
+// user routes
+
 router.get('/allusers', userController.getAllUsers);
 
-router.post('/signup', checkUserExists,userController.signup);
+router.put('/update/:id',userSignupValidationInput ,userController.updateUser);
 
-router.post('/login', userController.login);
+
 
 module.exports = router;
