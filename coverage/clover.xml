@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1626603697256" clover="3.2.0">
-  <project timestamp="1626603697257" name="All files">
-    <metrics statements="81" coveredstatements="46" conditionals="13" coveredconditionals="6" methods="16" coveredmethods="7" elements="110" coveredelements="59" complexity="0" loc="81" ncloc="81" packages="7" files="11" classes="11"/>
+<coverage generated="1627028351345" clover="3.2.0">
+  <project timestamp="1627028351346" name="All files">
+    <metrics statements="94" coveredstatements="48" conditionals="17" coveredconditionals="6" methods="17" coveredmethods="7" elements="128" coveredelements="61" complexity="0" loc="94" ncloc="94" packages="7" files="12" classes="12"/>
     <package name="jN_chart_api">
       <metrics statements="15" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2"/>
       <file name="index.js" path="/home/jeanpaul/Desktop/jN_chart_api/index.js">
@@ -44,7 +44,22 @@
       </file>
     </package>
     <package name="jN_chart_api.controllers.authController">
-      <metrics statements="9" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <metrics statements="21" coveredstatements="3" conditionals="4" coveredconditionals="0" methods="2" coveredmethods="0"/>
+      <file name="login.js" path="/home/jeanpaul/Desktop/jN_chart_api/controllers/authController/login.js">
+        <metrics statements="12" coveredstatements="1" conditionals="4" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="18" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="22" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="49" count="0" type="stmt"/>
+      </file>
       <file name="signup.js" path="/home/jeanpaul/Desktop/jN_chart_api/controllers/authController/signup.js">
         <metrics statements="9" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="9" count="1" type="stmt"/>
@@ -127,11 +142,12 @@
       </file>
     </package>
     <package name="jN_chart_api.routes">
-      <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="authRoutes.js" path="/home/jeanpaul/Desktop/jN_chart_api/routes/authRoutes.js">
-        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="14" count="1" type="stmt"/>
         <line num="18" count="1" type="stmt"/>
+        <line num="20" count="1" type="stmt"/>
         <line num="24" count="1" type="stmt"/>
         <line num="26" count="1" type="stmt"/>
         <line num="30" count="1" type="stmt"/>

@@ -11,9 +11,11 @@
     "migrations:test": "npx sequelize-cli db:migrate",
     "undomigrate:test": "npx sequelize-cli db:migrate:undo",
     "seeduser": "npx sequelize-cli seed:generate --name demo-user",
+    "seedmessage": "npx sequelize-cli seed:generate --name demo-message",
     "insertuserdata": "npx sequelize-cli db:seed:all",
     "test": "jest test --coverage",
-    "test:watch": "yarn test -- --watch"
+    "test:watch": "yarn test -- --watch",
+    "createmodel":"npx sequelize-cli model:generate --name User --attributes firstName:string,lastName:string,email:string"
   },
   "author": "Jean paul NIYOIZEYE",
   "license": "MIT",

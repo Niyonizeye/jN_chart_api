@@ -1,7 +1,7 @@
 import express from 'express';
 
 
-// import loginController from '../controllers/authController/login';
+import loginController from '../controllers/authController/login';
 
 import signupController from '../controllers/authController/signup';
 
@@ -17,7 +17,7 @@ const router = express.Router();
 
 router.post('/signup',userSignupValidationInput ,checkUserExists,signupController.signup);
 
-// router.post('/login', loginController.login);
+router.post('/login', loginController.login);
 
 // user routes
 

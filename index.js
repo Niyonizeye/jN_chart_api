@@ -4,6 +4,8 @@ import bodyParser from 'body-parser';
 
 import authRoutes from './routes/authRoutes';
 
+import messageRoutes from './routes/messageRoute'
+
 import db from './helper/databaseconfig'
 
 const app = express();
@@ -35,6 +37,10 @@ app.get('/',(req,res) => {
 })
 
 app.use('/auth/v1',authRoutes)
+
+// messages
+
+app.use('/v1', messageRoutes);
 
 app.listen(port,() => {
      console.log(`app is listening to port ${port}`);
