@@ -4,11 +4,21 @@ import bodyParser from 'body-parser';
 
 import authRoutes from './routes/authRoutes';
 
-import messageRoutes from './routes/messageRoute'
+import messageRoutes from './routes/messageRoute';
 
-import db from './helper/databaseconfig'
+import db from './helper/databaseconfig';
+
+import http from 'http';
 
 const app = express();
+
+
+
+const server = http.createServer(app);
+
+import { Server } from 'socket.io';
+
+const io = new Server(server);
 
 const port = 8080;
 
@@ -31,9 +41,11 @@ app.use(bodyParser.json());
 
 app.get('/',(req,res) => {
 
-    res.status(200).json({
-        'message':'Welcome to our app'
-    });
+  res.sendFile(__dirname + '/index.html');
+
+    // res.status(200).json({
+    //     'message':'Welcome to our app'
+    // });
 })
 
 app.use('/auth/v1',authRoutes)
@@ -42,8 +54,30 @@ app.use('/auth/v1',authRoutes)
 
 app.use('/v1', messageRoutes);
 
-app.listen(port,() => {
+// io.on('connection', (socket) => {
+
+//   console.log('a user connected');
+
+//   socket.on('disconnect', () => {
+
+//     console.log('user disconnected');
+
+//   });
+// });
+
+io.on('connection', (socket) => {
+
+  socket.on('chat message', (msg) => {
+
+    io.emit('chat message', msg);
+
+  });
+});
+
+server.listen(port,() => {
+
      console.log(`app is listening to port ${port}`);
+
 })
 
 module.exports = app;

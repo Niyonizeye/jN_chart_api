@@ -13,14 +13,15 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Message.belongsTo(models.User, {
-        foreignKey: 'userId',
+        foreignKey: 'writterId',
       });
     }
   };
   
   Message.init({
     messageContent: DataTypes.STRING,
-    userId:DataTypes.INTEGER,
+    writterId:DataTypes.INTEGER,
+    receiverId:DataTypes.INTEGER,
      
   }, {
     sequelize,

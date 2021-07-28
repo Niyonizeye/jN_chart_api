@@ -11,9 +11,14 @@ module.exports = {
       messageContent: {
         type: Sequelize.STRING
       },
-      userId: {
+      writterId: {
         type: Sequelize.INTEGER
       },
+
+      receiverId: {
+        type: Sequelize.INTEGER
+      },
+
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

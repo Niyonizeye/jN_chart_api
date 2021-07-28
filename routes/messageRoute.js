@@ -11,9 +11,13 @@ const router = express.Router();
 
 // message routes
 
-router.get('/allmessage',messageController.getAllMessages);
+router.get('/inbox',isauth,messageController.getAllMessages);
 
-router.post('/sendmessage',isauth,messageValidationInput,messageController.createMessage);
+router.post('/sendmessage/:receiverId',isauth,messageValidationInput,messageController.createMessage);
+
+router.delete('/deletemessage/:messageId',isauth,messageController.deleteMessage);
+
+// router.post('/sendmessage/:receiverId',messageValidationInput,messageController.createMessage);
 
 
 
